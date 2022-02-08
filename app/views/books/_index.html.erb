@@ -26,6 +26,19 @@
           <p>
             <%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>
         </td>
+        <td id="star_<%= book.id%>">
+          <script>
+            $('#star_<%= book.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : false,
+            readOnly: true,
+            score: <%= book.star %>,
+            });
+          </script>
+        </td>
+
       </tr>
     <% end %>
   </tbody>
