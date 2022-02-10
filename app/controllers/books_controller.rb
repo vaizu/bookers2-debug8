@@ -8,8 +8,15 @@ before_action :authenticate_user!
   end
 
   def index
-    @books = Book.all
     @book = Book.new
+    if params[:sort_update1]
+      @books = Book.news
+    elsif
+      @books = Book.stars
+    else
+      @books = Book.all
+    end
+
   end
 
   def create
@@ -53,5 +60,9 @@ before_action :authenticate_user!
     unless @book.user == current_user
       redirect_to books_path
     end
+  end
+
+  def sort_params
+    params.permit(:sort)
   end
 end
